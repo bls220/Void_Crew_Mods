@@ -1,0 +1,67 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Company>HobosInSpace</Company>
+        <Authors>SubHobo</Authors>
+        <Copyright>Copyright &#169; $([System.DateTime]::Now.Year)</Copyright>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <ProjectDirectoryName>$([System.IO.Path]::GetFileName($(MSBuildProjectDirectory)))</ProjectDirectoryName>
+        <RepositoryUrl>https://github.com/bls220/Void_Crew_Mods/tree/main/$(ProjectDirectoryName)</RepositoryUrl>
+        <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <DebugType>embedded</DebugType>
+        <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+        <GenerateDependencyFile>false</GenerateDependencyFile>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <ThunderPackagingRoot>$(SolutionDir)Release\</ThunderPackagingRoot>
+        <ThunderPackagingPath>$(ThunderPackagingRoot)$(MSBuildProjectName)\</ThunderPackagingPath>
+        <PackagedPath>BepInEx\Plugins\HobosInSpacePlugins\$(MSBuildProjectName)\</PackagedPath>
+        <OutputPath>$(ThunderPackagingPath)$(PackagedPath)</OutputPath>
+        <DefaultPackageIcon>$(SolutionItemsDir)icon.png</DefaultPackageIcon>
+        <GamePath>$([MSBuild]::GetRegistryValue(`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 1063420`, `InstallLocation`))\</GamePath>
+        <GamePath Condition="'$(GamePath)' == ''">Only needed if game cannot be autodetected from steam install</GamePath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Core"/>
+        <PackageReference Include="BepInEx.PluginInfoProps"/>
+        <PackageReference Include="UnityEngine.Modules"/>
+    </ItemGroup>
+
+    <ItemDefinitionGroup>
+        <PackageReference>
+            <Private>False</Private>
+        </PackageReference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+    </ItemDefinitionGroup>
+
+    <ItemGroup>
+        <None Include="$(SolutionDir)LICENSE" CopyToOutputDirectory="Always" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+    <ItemGroup Condition="Exists('$(ProjectDir)CHANGELOG.md')">
+        <None Include="$(ProjectDir)CHANGELOG.md" CopyToOutputDirectory="Always" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectProperty Include="PackageId"/>
+        <ProjectProperty Include="ThunderstorePackageName"/>
+    </ItemGroup>
+</Project>

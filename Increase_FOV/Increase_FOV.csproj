@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <AssemblyName>Space.HobosIn.Increase_FOV</AssemblyName>
+        <Product>Increase_FOV</Product>
+        <Description></Description>
+        <Version>1.0.0</Version>
+        <RootNamespace>Increase_FOV</RootNamespace>
+    </PropertyGroup>
+</Project>

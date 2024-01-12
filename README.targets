@@ -1,0 +1,32 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="_GenerateReadme" AfterTargets="Build" Inputs="$(MSBuildAllProjects)" Outputs="$(ThunderPackagingPath)README.md;$(OutputPath)README.md">
+        <PropertyGroup>
+            <ReaderMePluginContent Condition="'$(ReaderMePluginContent)' == '' and Exists('$(ProjectDir)_README.md')">$([System.IO.File]::ReadAllText('$(ProjectDir)_README.md'))</ReaderMePluginContent>
+            <ReadmeHeaderContent>
+                <![CDATA[
+# $(Title)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%2520BY--NC--SA%25204.0-orange.svg?logo=creativecommons&link=https://creativecommons.org/licenses/by-nc-sa/4.0/)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+[![Github: bls220](https://img.shields.io/badge/​-bls220-brightgreen?logo=GitHub&link=www.example.com)]($(RepositoryUrl))
+
+$(Description)
+]]>
+            </ReadmeHeaderContent>
+            <ReadmeFooterContent>
+                <![CDATA[
+&nbsp%3B
+
+## ⏬ Manual Install
+
+- Install [BepInEx 5](https://github.com/BepInEx/BepInEx).
+- Place `$(AssemblyName).dll` in `$(PackagedPath)` folder.
+]]>
+            </ReadmeFooterContent>
+
+        </PropertyGroup>
+
+        <Delete Files="$(OutputPath)README.md;$(ThunderPackagingPath)README.md" />
+        <WriteLinesToFile Lines="$(ReadmeHeaderContent);$(ReaderMePluginContent);$(ReadmeFooterContent)" File="$(OutputPath)README.md" Overwrite="true"/>
+        <Copy SourceFiles="$(OutputPath)README.md" DestinationFolder="$(ThunderPackagingPath)" Condition="Exists('$(OutputPath)README.md')" />
+    </Target>
+
+</Project>
