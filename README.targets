@@ -1,5 +1,5 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Target Name="_GenerateReadme" AfterTargets="Build" Inputs="$(MSBuildAllProjects)" Outputs="$(ThunderPackagingPath)README.md;$(OutputPath)README.md">
+    <Target Name="_GenerateReadme" AfterTargets="_GeneratePluginManifest" Inputs="$(MSBuildAllProjects)" Outputs="$(ThunderPackagingPath)README.md;$(OutputPath)README.md">
         <PropertyGroup>
             <ReaderMePluginContent Condition="'$(ReaderMePluginContent)' == '' and Exists('$(ProjectDir)_README.md')">$([System.IO.File]::ReadAllText('$(ProjectDir)_README.md'))</ReaderMePluginContent>
             <ReadmeHeaderContent>
