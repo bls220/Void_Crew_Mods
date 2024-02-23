@@ -1,5 +1,9 @@
-﻿using HarmonyLib;
-using System.Linq;
+﻿using System.Reflection;
+
+using HarmonyLib;
+
+using UI.Settings;
+
 using UnityEngine.UIElements;
 
 namespace Voider_Crew;
@@ -10,18 +14,25 @@ public partial class Plugin
     private static class MatchmakingRoomSetupPatch
     {
         [HarmonyPostfix, HarmonyPatch(MethodType.Constructor, typeof(VisualElement))]
-        private static void Constructor_Postfix(VisualElement root, SliderInt ___playerLimitInput)
+        private static void Constructor_Postfix(VisualElement root)
         {
-            ___playerLimitInput.highValue = Plugin.NewMaxPlayers;
-            ___playerLimitInput.RegisterValueChangedCallback((evt) =>
+            // Get the player setting slider
+            var playerSlider = root.Q<SliderIntSettingEntryVE?>("PlayerSlider", (string?)null, (string?)null);
+            if (playerSlider is null)
             {
-                // Last Label within slider is the "max" label.
-                // I have to select it positionally since it has no unique name or CSS class.
-                if (___playerLimitInput.Children().Last() is Label label)
-                {
-                    label.text = evt.newValue.ToString();
-                }
-            });
+                Plugin.StaticLogger?.LogError("Unable to find the PlayerSlider");
+                return;
+            }
+
+            // Get the slider element
+            if (typeof(SliderIntSettingEntryVE).GetField("slider", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(playerSlider) is not SliderInt playerLimitInput)
+            {
+                Plugin.StaticLogger?.LogError("Unable to find the PlayerSlider.slider");
+                return;
+            }
+            // Set the HighValue to our Max Players
+            playerLimitInput.highValue = Plugin.NewMaxPlayers;
+            playerLimitInput.RegisterValueChangedCallback((evt) => Plugin.StaticLogger?.LogDebug($"Player limit slider changed to {evt.newValue}"));
         }
     }
 }

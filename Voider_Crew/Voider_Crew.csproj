@@ -3,7 +3,7 @@
         <AssemblyName>Space.HobosIn.Voider_Crew</AssemblyName>
         <Product>Voider_Crew</Product>
         <Description>This mod increases the player max to 8 per lobby.</Description>
-        <Version>0.0.1</Version>
+        <Version>0.0.2</Version>
         <RootNamespace>Voider_Crew</RootNamespace>
     </PropertyGroup>
 </Project>
