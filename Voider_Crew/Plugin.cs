@@ -1,5 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
+
 using HarmonyLib;
 
 namespace Voider_Crew;
@@ -8,26 +9,34 @@ namespace Voider_Crew;
 public partial class Plugin : BaseUnityPlugin
 {
     public static ManualLogSource? StaticLogger { get; private set; }
+    public static Plugin Instance { get; private set; } = null!;
 
     private static readonly Harmony _harmony = new(MyPluginInfo.PLUGIN_GUID);
 
     protected static int NewMaxPlayers { get; private set; } = 8;
 
+    private int CurrentMaxPlayer { get; set; } = 4;
+
+    protected Plugin()
+    {
+        Instance = this;
+    }
+
     [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
     private void Awake()
     {
-        StaticLogger = this.Logger;
-        this.Logger.LogDebug($"Plugin {MyPluginInfo.PLUGIN_GUID} is loading!");
+        StaticLogger = Instance.Logger;
+        Logger.LogDebug($"Plugin {MyPluginInfo.PLUGIN_GUID} is loading!");
         try
         {
             _harmony.PatchAll();
         }
         catch (HarmonyException ex)
         {
-            this.Logger.LogError(ex.Message);
-            this.Logger.LogError($"Plugin {MyPluginInfo.PLUGIN_GUID} failed to patch!");
+            Logger.LogError(ex.Message);
+            Logger.LogError($"Plugin {MyPluginInfo.PLUGIN_GUID} failed to patch!");
             return;
         }
-        this.Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
+        Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
     }
 }
