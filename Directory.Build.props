@@ -1,0 +1,46 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <LangVersion>preview</LangVersion>
+        <Nullable>enable</Nullable>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <DebugType>embedded</DebugType>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <GenerateDependencyFile>false</GenerateDependencyFile>
+        <Copyright>Copyright &#169; $([System.DateTime]::Now.Year)</Copyright>
+        <Version>$(PackageVersion)</Version>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="$(SolutionDir)LICENSE" CopyToOutputDirectory="Always"/>
+    </ItemGroup>
+
+    <!-- README Gen -->
+    <ItemGroup>
+        <ReadmeSection Include="../_README_Header.md" />
+        <ReadmeSection Include="_README.md" />
+        <ReadmeSection Include="../_README_Footer.md" />
+    </ItemGroup>
+
+    <!--Thunderstore Info-->
+    <PropertyGroup>
+        <Title>$(Product.Replace("_"," "))</Title>
+        <Company>HobosInSpace</Company>
+        <Authors>SubHobo</Authors>
+        <GamePath>$([MSBuild]::GetRegistryValue(`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 1063420`, `InstallLocation`))\</GamePath>
+    </PropertyGroup>
+    <ItemGroup>
+        <ThunderDependency Include="BepInEx-BepInExPack-5.4.2100" />
+    </ItemGroup>
+
+    <!--BepInEx Requirements-->
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Core"/>
+        <PackageReference Include="BepInEx.PluginInfoProps"/>
+        <PackageReference Include="UnityEngine.Modules"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+    </ItemGroup>
+</Project>

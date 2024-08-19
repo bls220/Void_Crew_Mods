@@ -1,0 +1,48 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IncreaseFOV", "IncreaseFOV\IncreaseFOV.csproj", "{BB72AAF6-4FD0-4A46-9E72-81E29FC32B7A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkipIntro", "SkipIntro\SkipIntro.csproj", "{98CA6F5E-36DA-49ED-B712-113DC526392A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voider_Crew", "Voider_Crew\Voider_Crew.csproj", "{B0DC7130-85AC-4272-B797-0D5C3AA3111B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{AA128655-E8FC-46FF-88EE-01C084193E8D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+		Nuget.config = Nuget.config
+		README.md = README.md
+		_README_Footer.md = _README_Footer.md
+		_README_Header.md = _README_Header.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB72AAF6-4FD0-4A46-9E72-81E29FC32B7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB72AAF6-4FD0-4A46-9E72-81E29FC32B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB72AAF6-4FD0-4A46-9E72-81E29FC32B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB72AAF6-4FD0-4A46-9E72-81E29FC32B7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98CA6F5E-36DA-49ED-B712-113DC526392A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98CA6F5E-36DA-49ED-B712-113DC526392A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98CA6F5E-36DA-49ED-B712-113DC526392A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98CA6F5E-36DA-49ED-B712-113DC526392A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0DC7130-85AC-4272-B797-0D5C3AA3111B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0DC7130-85AC-4272-B797-0D5C3AA3111B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0DC7130-85AC-4272-B797-0D5C3AA3111B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0DC7130-85AC-4272-B797-0D5C3AA3111B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE12D19F-F450-4ECC-B2AB-AB3C8DF0352C}
+	EndGlobalSection
+EndGlobal

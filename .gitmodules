@@ -1,0 +1,9 @@
+[submodule "SkipIntro"]
+	path = SkipIntro
+	url = git@github.com:bls220/VoidCrew_SkipIntro.git
+[submodule "IncreaseFOV"]
+	path = IncreaseFOV
+	url = git@github.com:bls220/VoidCrew_IncreaseFOV.git
+[submodule "Voider_Crew"]
+	path = Voider_Crew
+	url = git@github.com:bls220/Voider_Crew.git
