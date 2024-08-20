@@ -12,6 +12,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <AdditionalThisAssemblyFields Include="PluginTitle" String="$(Title)" />
+        <AdditionalThisAssemblyFields Include="PluginGUID" String="$(AssemblyName)" />
+        <AdditionalThisAssemblyFields Include="PluginAuthors" String="$(Authors)" />
+        <AdditionalThisAssemblyFields Include="PluginDescription" String="$(Description)" />
+    </ItemGroup>
+
+    <ItemGroup>
         <None Include="$(SolutionDir)LICENSE" CopyToOutputDirectory="Always"/>
     </ItemGroup>
 
@@ -24,6 +31,7 @@
 
     <!--Thunderstore Info-->
     <PropertyGroup>
+        <ThunderPackagingRoot>$(ProjectDir)dist/</ThunderPackagingRoot>
         <Title>$(Product.Replace("_"," "))</Title>
         <Company>HobosInSpace</Company>
         <Authors>SubHobo</Authors>
@@ -36,7 +44,6 @@
     <!--BepInEx Requirements-->
     <ItemGroup>
         <PackageReference Include="BepInEx.Core"/>
-        <PackageReference Include="BepInEx.PluginInfoProps"/>
         <PackageReference Include="UnityEngine.Modules"/>
     </ItemGroup>
 
