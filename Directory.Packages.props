@@ -9,7 +9,7 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </GlobalPackageReference>
-    <GlobalPackageReference Include="SubHobo.Thunderstore.BuildTargets" Version="1.0.0">
+    <GlobalPackageReference Include="SubHobo.Thunderstore.BuildTargets" Version="1.1.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </GlobalPackageReference>

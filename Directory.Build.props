@@ -19,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="$(SolutionDir)LICENSE" CopyToOutputDirectory="Always"/>
+        <None Include="$(ProjectDir)LICENSE" CopyToOutputDirectory="Always"/>
     </ItemGroup>
 
     <!-- README Gen -->
