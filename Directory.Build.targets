@@ -1,0 +1,5 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug' AND Exists('$(SolutionDir)bin/pdb2mdb.exe')">
+      <Exec Command="$(SolutionDir)bin/pdb2mdb.exe $(OutputPath)$(AssemblyName).dll" />
+    </Target>
+</Project>

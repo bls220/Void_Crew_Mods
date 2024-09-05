@@ -4,11 +4,18 @@
         <LangVersion>preview</LangVersion>
         <Nullable>enable</Nullable>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <DebugType>embedded</DebugType>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GenerateDependencyFile>false</GenerateDependencyFile>
         <Copyright>Copyright &#169; $([System.DateTime]::Now.Year)</Copyright>
         <Version>$(PackageVersion)</Version>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' != 'Debug'">
+        <DebugType>embedded</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DebugType>Full</DebugType>
     </PropertyGroup>
 
     <ItemGroup>
